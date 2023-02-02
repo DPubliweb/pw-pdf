@@ -1,0 +1,15 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+table {
+    width: 800px;
+}
+
+td {
+    justify-content: center;
+}
+
+.dataframe {
+    text-align: center;
+}

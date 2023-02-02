@@ -1,0 +1,47 @@
+<html>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+
+    <style>
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+        }
+
+        .table {
+            margin: 20px;
+            border-collapse: collapse;
+        }
+
+        .table, .table th, .table td {
+            padding: 5px;
+        }
+
+        .date {
+            text-align: right;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://publiweb.group/wp-content/uploads/2021/07/logo-group-150H-1.png" alt="Logo">
+        <p class="date">Date: {{ date }}</p>
+    </div>
+    <div class="title">
+    <hr>
+    <h1 style="text-align: center;">Comptage {{ client_name }}</h1>
+    <hr>
+  </div>
+    <div class="table" style="display:flex; justify-content:center">
+      {{ data | safe }}
+    </div>
+
+</body>
+</html>
