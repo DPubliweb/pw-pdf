@@ -5,30 +5,93 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>Publiweb: Comptage</title>
 </head>
+
+
 <body>
-    <form method="POST" enctype="multipart/form-data" action="/pdf_upload">
-        <div class="formbg-outer">
-            <div class="formbg">
-              <div class="formbg-inner padding-horizontal--48">
-            <dl>
-                <div class="field padding-bformbgottom--24">
-
-                <label for="file" style="font-weight: 500; margin-bottom: 30px; margin-top: 10px;">Sélectionnez le
-                    fichier à traiter </label>
-                <input class="file_upload" type="file" name="file" autocomplete="off" required>
-
-                <p style='text-align: center;'>
-                    <button type="submit" class="button-85" role="button">Envoyer
-                    </button>
-                </p>
+  <div class="login-root">
+    <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
+      <div class="loginbackground box-background--white padding-top--64">
+        <div class="loginbackground-gridContainer">
+          <div class="box-root flex-flex" style="grid-area: top / start / 8 / end;">
+            <div class="box-root" style="background-image: linear-gradient(white 0%, rgb(247, 250, 252) 33%); flex-grow: 1;">
             </div>
-            </dl>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 4 / 2 / auto / 5;">
+            <div class="box-root box-divider--light-all-2 animationLeftRight tans3s" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 6 / start / auto / 2;">
+            <div class="box-root box-background--blue800" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 7 / start / auto / 4;">
+            <div class="box-root box-background--blue animationLeftRight" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 8 / 4 / auto / 6;">
+            <div class="box-root box-background--gray100 animationLeftRight tans3s" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 2 / 15 / auto / end;">
+            <div class="box-root box-background--cyan200 animationRightLeft tans4s" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 3 / 14 / auto / end;">
+            <div class="box-root box-background--blue animationRightLeft" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 4 / 17 / auto / 20;">
+            <div class="box-root box-background--gray100 animationRightLeft tans4s" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 5 / 14 / auto / 17;">
+            <div class="box-root box-divider--light-all-2 animationRightLeft tans3s" style="flex-grow: 1;"></div>
+          </div>
         </div>
+      </div>
+      <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+        <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+          <h1><a href="http://blog.stackfindover.com/" rel="dofollow">Publiweb Comptage</a></h1>
+        </div>
+        <div class="formbg-outer">
+          <div class="formbg">
+            <div class="formbg-inner padding-horizontal--48">
+              <span class="padding-bottom--15">Entrez les informations</span>
+              <form id="stripe-login" method="POST" enctype="multipart/form-data" action="/pdf_upload" >
+                <div class="field padding-bottom--24">
+                    <label for="civilite" style="font-weight: 500;">Civilité </label>
+                    <select name="civilite" id="civilite" name="civilite">
+                        <option value="Mr"> </option>
+                        <option value="Mme">Mr</option>
+                        <option value="Mlle">Mme</option>
+                      </select>
+                </div>
+                <div class="field padding-bottom--24">
+                  <div class="grid--50-50">
+                    <label for="name" style="font-weight: 500;">Nom</label>
+                  </div>
+                  <input type="text" name="name" autocomplete="off" >
+                </div>
+                <div class="field padding-bottom--24">
+                    <div class="grid--50-50">
+                        <label for="societe" style="font-weight: 500;">Société</label>
+                    </div>
+                    <input type="text" name="societe" autocomplete="off" >
+                  </div>
+                  <div class="field padding-bottom--24">
+                    <div class="grid--50-50">
+                    <label for="file">Fichier </label>
+                  </div>
+                  <input class="file_upload" type="file" name="file" autocomplete="off" required>
+                  </div>
+                <div class="field padding-bottom--24">
+                  <input type="submit" name="submit" value="Continue">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>        
-</form>
-    
+  </div>
+</body>
+
+</html>
 </body>
 </html>

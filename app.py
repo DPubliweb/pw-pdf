@@ -16,9 +16,10 @@ styles = [
                                ("border", "1px solid #eee"),
                                ("padding", "12px 35px"),
                                ("border-collapse", "collapse"),
-                               ("background", "#00cccc"),
+                               ("background", "#535353"),
                                ("text-transform", "uppercase"),
-                               ("font-size", "18px")
+                               ("font-size", "18px"),
+                               ("text-align", "center")
                                ]),
     dict(selector="td", props=[("color", "#999"),
                                ("border", "1px solid #eee"),
@@ -32,7 +33,8 @@ styles = [
                                     ("margin" , "25px auto"),
                                     ("border-collapse" , "collapse"),
                                     ("border" , "1px solid #eee"),
-                                    ("border-bottom" , "2px solid #00cccc"),                                    
+                                    ("border-bottom" , "2px solid #00cccc"),   
+                                    ("width", "100%")                                 
                                       ]),
     dict(selector="caption", props=[("caption-side", "bottom")])
 ]
@@ -46,6 +48,12 @@ def home():
 def pdf_creator():
     if request.method == "POST":
         file = request.files["file"]
+        civilite =  request.form['civilite']
+        name = request.form['name']
+        societe = request.form['societe']
+        session['civilite'] = civilite
+        session['name'] = name
+        session['societe'] = societe
         if file.filename.endswith(".csv"):
             data = pd.read_csv(file)
         elif file.filename.endswith(".xlsx"):
@@ -55,18 +63,23 @@ def pdf_creator():
         else:
             return "File format not supported"
         
-        data = data.to_html(index=False, justify='center', classes='table table-striped')
+        data = data.style.set_table_styles(styles).render() 
         session['data'] = data
-        return render_template("pdf.html", date=datetime.now().strftime("%d-%m-%Y"), data=data)
+ 
+
+        return render_template("pdf.html", date=datetime.now().strftime("%d-%m-%Y"), data=data, civilite=civilite, name=name, societe=societe)
     return render_template("index.html")
 
 @app.route("/pdf_download")
 def pdf_download():
     data = session.get('data')
+    civilite = session.get('civilite')
+    name = session.get('name')
+    societe = session.get('societe')
     if not data:
         return "No data to download"
     
-    html = render_template("pdf.html", date=datetime.now().strftime("%d-%m-%Y"), data=data)
+    html = render_template("pdf.html", date=datetime.now().strftime("%d-%m-%Y"), data=data,  civilite=civilite, name=name, societe=societe)
     pdf = pdfkit.from_string(html, False)
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'

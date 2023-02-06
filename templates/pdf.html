@@ -1,11 +1,14 @@
 <html>
 <head>
   <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <style>
         .header {
             display: flex;
-            align-items: center;
+            align-items: right;
             justify-content: space-around;
         }
 
@@ -15,7 +18,6 @@
         }
 
         .table {
-            margin: 20px;
             border-collapse: collapse;
         }
 
@@ -27,23 +29,60 @@
             text-align: right;
             margin-right: 20px;
         }
+        img {
+            width: 220px;
+        }
+        th.blank.level0 {
+        width: 10px
+    }
+
     </style>
 </head>
 <body>
     <div class="header">
-        <img src="https://publiweb.group/wp-content/uploads/2021/07/logo-group-150H-1.png" alt="Logo">
-        <p class="date">Date: {{ date }}</p>
+        </div>
+        <div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="invoice-title" style="text-align: center;">
+                    <h3 class="pull-right">Comptage<br><span style="font-size: 15px;">{{ date }}</span></h3>
+                </div>
+                <img src="{{ url_for('static', filename= 'css/logo-2.png') }}" alt="Logo">
+                <hr>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <address>
+                        <strong>Publiweb L.T.D</strong><br>
+                        16, Hanegev<br>
+                        Ra’anana 43000<br>
+                            Israel<br>
+                        </address>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <address>
+                        <strong>Fait pour:</strong><br>
+                            {{ civilite }} {{ name }}<br>
+                            {{ societe }}
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Résumé du comptage</strong></h3>
+                    </div>
+                    <div class="table" style="display:flex; justify-content:center">
+                        {{ data | safe }}
+                      </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="title">
-    <hr>
-    <h1 style="text-align: center;">Comptage {{ client_name }}</h1>
-    <hr>
-  </div>
-    <div class="table" style="display:flex; justify-content:center">
-      {{ data | safe }}
-    </div>
-    <a href="{{ url_for('pdf_download') }}" download="devis_{{ date }}.pdf">
-        <button>Télécharger en PDF</button>
-    </a>
+
 </body>
 </html>
